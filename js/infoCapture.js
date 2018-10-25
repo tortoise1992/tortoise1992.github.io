@@ -178,7 +178,7 @@ var browserInfor = {
 
 function eachTest() {
 	startTime = new Date().getTime();
-	$("body").append("<iframe id='inforCaptureFm' src='" + webList[testNum].curUrl + "' width='1' height='1'></iframe>")
+	$("body").append("<iframe id='inforCaptureFm' src='" + webList[testNum].url + "' width='1' height='1'></iframe>")
 
 	$('#inforCaptureFm').on('load', function() {
 		endTime = new Date().getTime();
@@ -190,8 +190,11 @@ function eachTest() {
 function nextTest() {
 	$("#inforCaptureFm").remove();
 
-	webList[testNum].time = during;
-
+	webList[testNum].duration = during;
+	webList[testNum].browser=browserInfor.type.value
+	webList[testNum].kernelVersion=browserInfor.userAgent.value
+	webList[testNum].address=webList[testNum].url
+	delete webList[testNum].url
 	testNum++;
 
 	if(testNum < webList.length) {
@@ -200,14 +203,17 @@ function nextTest() {
 		// console.log(webList);
 		// console.log(browserInfor);
 		// 采集信息完成，告知后台
+		var postData={
+			"visitRecordArray":webList,
+			"content":JSON.stringify(browserInfor)
+		}
+		//内核版本
 		$.ajax({
 			type:"post",
-			url:"http://localhost:3000/login/test",
+			url:"http://2o25074t18.51mypc.cn/bigdata/visit/record/insert/v1",
 			dataType: "json",
-			data:{
-				webList:JSON.stringify(webList),
-				browserInfor:JSON.stringify(browserInfor)
-			}
+			contentType : "application/json",
+			data:JSON.stringify(postData)
 		})
 		
 	}
@@ -221,19 +227,22 @@ $.ajax({
 	url:"http://2o25074t18.51mypc.cn/bigdata/visit/record/result/urls/v1",
 	dataType: "json",
 	success: function (data) {
-		webList=data.data
-		//	--------------------------提示用户是否同意采集信息---------------------------------
-		var inforGetBool = confirm("我们将采集一些非个人信息，以便统计当前访问的速率。是否同意？");
-		if(inforGetBool) {
-			eachTest()
-		};
+		if(data.success){
+			webList=data.obj
+			//	--------------------------提示用户是否同意采集信息---------------------------------
+			var inforGetBool = confirm("我们将采集一些非个人信息，以便统计当前访问的速率。是否同意？");
+			if(inforGetBool) {
+				eachTest()
+			};
+		}		
 	}
 });
 
 // var webList = [{
 // 		name: "百度",
 // 		curUrl: "https://www.baidu.com",
-// 		time: ""
+// 		time: "",
+		
 // 	},
 // 	{
 // 		name: "慕课网",
