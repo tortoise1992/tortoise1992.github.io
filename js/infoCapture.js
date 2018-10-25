@@ -218,7 +218,7 @@ function nextTest() {
 
 $.ajax({
 	type:"get",
-	url:"http://192.168.102.190:8888/bigdata/visit/record/result/urls/v1?sourceCode=pc",
+	url:"http://2o25074t18.51mypc.cn/bigdata/visit/record/result/urls/v1",
 	dataType: "json",
 	success: function (data) {
 		webList=data.data
