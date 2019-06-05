@@ -1,47 +1,13 @@
-<!DOCTYPE html><html><head><link rel="stylesheet" href="/umi.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"><!-- updateV --><title>湖南汽车工程职业学院大数据分析与决策平台</title><link rel="stylesheet" href="//at.alicdn.com/t/font_891740_xt7tqxccv7.css"><script src="//at.alicdn.com/t/font_891740_xt7tqxccv7.js"></script><script src="//at.alicdn.com/t/font_891740_xt7tqxccv7.js"></script><!-- <script src="http://api.map.baidu.com/api?v=2.0&ak=moMIflSL2yGiq3VwQ3bynEKE7gl2cjQw"></script> --><!-- <script type="text/javascript" src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script> --><style>.item-wrapper{
-            float: left;
-            width: 25%;
-            height: calc((100vh - 68px)/3 + 0.3px);
-            padding: 8px 10px;
-            box-sizing: border-box;
-        }
-        .item-wrapper .item-box{
-            height: 100%;
-            width: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-        .item-wrapper .item-box .item-title{
-            height: 30px;                    
-            background: url(data:image/png;base64,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) no-repeat left top;
-            margin-bottom: -3px;     
-        }
-        .item-wrapper .item-box .item-title span{
-            line-height: 30px;
-            color: #00CFFF;
-            display: inline-block;
-            padding-left: 30px;
-            width: 250px;
-            text-align: center;
-        }
-        .item-wrapper .item-box .item-chart{
-            flex: 1;
-            background-color: rgba(0,207,255,0.1);
-            opacity: 0.8734000000000001;
-        }
-        .item-wrapper .item-box::after{
-            content: "";
-            position: absolute;
-            border-top: 5px solid transparent;
-            border-left: 5px solid transparent;
-            border-right: 5px solid #00cfff;
-            border-bottom: 5px solid #00cfff;
-            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
-            border-radius: 3px 0 0;
-            width: 0px;
-            height: 0px;
-            right: 0px;
-            bottom: 0px;
-        }</style><script>window.routerBase = "/";</script></head><body><div id="root"></div><script src="/umi.js"></script></body></html>
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link href="./img/logo.ico" rel="shortcut icon"/>
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /> -->
+    <title>湖南工业职业技术学院</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"> -->
+<link href="/css/app.ac7567c2.css" rel="stylesheet"></head>
+<body>
+<div id="app"></div>
+<script type="text/javascript" src="/js/app.2f6287d7.bundle.js"></script><script type="text/javascript" src="/js/runtime.050b4724.js"></script><script type="text/javascript" src="/js/vendor.04585b42.bundle.js"></script></body>
+</html>
